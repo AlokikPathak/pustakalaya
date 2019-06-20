@@ -6,11 +6,17 @@
  * Created On: 13/06/2019
  */
 
-var Book = require('../models/genre');
+var Genre = require('../models/genre');
 
 // Display list of Books
 exports.genre_list = function(req, res) {
-   res.send('NOT IMPLEMENTED: Book list');
+   Genre.find()
+   .exec( function(err, list_genre){
+       if(err) { return next(err);}
+
+       // Successful render view
+       res.render('genre_list', { title:'Genre List', genre_list: list_genre});
+   });
 };
 
 // Display detail page of specific book

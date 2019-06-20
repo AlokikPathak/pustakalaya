@@ -6,7 +6,9 @@
  * Created On: 13/06/2019
  */
 
-var Book = require('../models/bookinstance');
+var BookInstance = require('../models/bookinstance');
+var moment = require('moment'); // Library to format to time
+
 
 // Display list of Books
 exports.bookinstance_list = function(req, res, next) {
@@ -14,7 +16,7 @@ exports.bookinstance_list = function(req, res, next) {
     BookInstance.find()
     .populate('book')
     .exec(function (err, list_bookinstances) {
-        if(err) {  return next(err)}
+        if(err) {  return next(err); }
 
         // successfull, so render
         res.render('bookinstance_list', { title: 'Book Instance List', bookinstance_list: list_bookinstances });

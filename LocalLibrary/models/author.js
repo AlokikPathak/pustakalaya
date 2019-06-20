@@ -1,5 +1,6 @@
 
 var mongoose = require('mongoose');
+var moment = require('moment');// For formatting lifespan of author
 
 var Schema = mongoose.Schema;
 
@@ -32,6 +33,17 @@ AuthorSchema
 .virtual('url')
 .get(function() {
     return '/catalog/author/' + this._id;
+});
+
+
+// Virtual formated Author's date
+AuthorSchema
+.virtual('DOB')
+.get(function() {
+
+  //  var lifespan = this.date_of_death.getYear() - this.date_of_birth.getYear();
+    return this.date_of_birth ? moment(this.date_of_birth).format('YYYY-MM-DD') : '';
+
 });
 
 // Export model
