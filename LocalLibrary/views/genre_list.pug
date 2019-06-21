@@ -7,7 +7,8 @@ block content
     ul
         each genre in genre_list
 
-            li #{genre.name}
+            li 
+                a(href=genre.url) #{genre.name}
         
         else
 
