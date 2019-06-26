@@ -13,6 +13,9 @@ var async = require('async');
 const { body, validationResult } = require('express-validator');
 const { sanitizeBody } = require('express-validator');
 
+var debug = require('debug')('author');
+
+
 
 // Display list of Authors
 exports.author_list = function(req, res){
